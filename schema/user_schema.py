@@ -1,13 +1,13 @@
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel, EmailStr, Field, ConfigDict
 from typing import Optional
 from datetime import datetime
 
 class UserCreate(BaseModel):
-    username: str
-    email: EmailStr
-    first_name: str
-    last_name: str
-    role: str
+    username: str = Field(..., example="jdoe")
+    email: EmailStr = Field(..., example="jdoe@email.com")
+    first_name: str = Field(..., example="John")
+    last_name: str = Field(..., example="Doe")
+    role: str = Field(..., example="user")
 
 class UserUpdate(BaseModel):
     email: Optional[EmailStr] = None
@@ -23,5 +23,4 @@ class UserResponse(BaseModel):
     active: bool
     created_at: datetime
 
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
