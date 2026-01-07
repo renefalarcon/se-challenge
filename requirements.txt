@@ -1,7 +1,5 @@
 fastapi
-uvicorn
+uvicorn[standard]
 sqlalchemy
 pydantic[email]
-email-validator
-pytest
-httpx
+python-dotenv
